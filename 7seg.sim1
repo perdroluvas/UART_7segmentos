@@ -1,0 +1,159 @@
+<circuit version="1.1.0-SR1" rev="" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="main.hex" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+
+<item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="4800 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="Seven Segment" CircId="Seven Segment-16" mainComp="false" Show_id="false" Show_Val="false" Pos="80,-140" rotation="0" hflip="1" vflip="1" label="Seven Segment-16" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" NumDisplays="1" Vertical_Pins="false" CommonCathode="false" Threshold="2.4 V" MaxCurrent="20 mA" Resistance="1 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-18" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-164" rotation="0" hflip="1" vflip="1" label="Resistor-18" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-37" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-156" rotation="0" hflip="1" vflip="1" label="Resistor-37" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-38" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-148" rotation="0" hflip="1" vflip="1" label="Resistor-38" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-39" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-140" rotation="0" hflip="1" vflip="1" label="Resistor-39" idLabPos="-16,-24" labelrot="0" valLabPos="-19.9063,21.1912" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-40" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-132" rotation="0" hflip="1" vflip="1" label="Resistor-40" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-41" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-124" rotation="0" hflip="1" vflip="1" label="Resistor-41" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-42" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-116" rotation="0" hflip="1" vflip="1" label="Resistor-42" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
+
+<item itemtype="Switch" CircId="Switch-43" mainComp="false" Show_id="false" Show_Val="false" Pos="-264,4" rotation="0" hflip="1" vflip="1" label="Switch-43" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" DT="false" Poles="1" />
+
+<item itemtype="Ground" CircId="Ground-44" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,92" rotation="0" hflip="1" vflip="1" label="Ground-44" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Rail" CircId="Rail-6" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="92,0" rotation="-90" hflip="1" vflip="1" label="Rail-6" idLabPos="-5,-10" labelrot="-90" valLabPos="-16.085,5.03883" valLabRot="-90" Voltage="5 V" />
+
+<item itemtype="Connector" uid="Connector-33" startpinid="SerialTerm-8-pin0" endpinid="mega328-2-PORTD0" pointList="-200,-112,-176,-112" />
+
+<item itemtype="Connector" uid="Connector-34" startpinid="SerialTerm-8-pin1" endpinid="mega328-2-PORTD1" pointList="-200,-96,-188,-96,-188,-104,-176,-104" />
+
+<item itemtype="Connector" uid="Connector-63" startpinid="mega328-2-PORTB0" endpinid="Resistor-18-lPin" pointList="-120,-112,-92,-112,-92,-164,-48,-164" />
+
+<item itemtype="Connector" uid="Connector-64" startpinid="Resistor-18-rPin" endpinid="Seven Segment-16-pin_a" pointList="-16,-164,56,-164" />
+
+<item itemtype="Connector" uid="Connector-113" startpinid="mega328-2-PORTB1" endpinid="Resistor-37-lPin" pointList="-120,-104,-88,-104,-88,-156,-48,-156" />
+
+<item itemtype="Connector" uid="Connector-114" startpinid="mega328-2-PORTB2" endpinid="Resistor-38-lPin" pointList="-120,-96,-84,-96,-84,-148,-48,-148" />
+
+<item itemtype="Connector" uid="Connector-117" startpinid="mega328-2-PORTB5" endpinid="Resistor-41-lPin" pointList="-120,-72,-68,-72,-68,-124,-48,-124" />
+
+<item itemtype="Connector" uid="Connector-119" startpinid="Resistor-37-rPin" endpinid="Seven Segment-16-pin_b" pointList="-16,-156,56,-156" />
+
+<item itemtype="Connector" uid="Connector-120" startpinid="Resistor-38-rPin" endpinid="Seven Segment-16-pin_c" pointList="-16,-148,56,-148" />
+
+<item itemtype="Connector" uid="Connector-121" startpinid="Resistor-39-rPin" endpinid="Seven Segment-16-pin_d" pointList="-16,-140,56,-140" />
+
+<item itemtype="Connector" uid="Connector-122" startpinid="Resistor-40-rPin" endpinid="Seven Segment-16-pin_e" pointList="-16,-132,56,-132" />
+
+<item itemtype="Connector" uid="Connector-123" startpinid="Resistor-41-rPin" endpinid="Seven Segment-16-pin_f" pointList="-16,-124,56,-124" />
+
+<item itemtype="Connector" uid="Connector-124" startpinid="Resistor-42-rPin" endpinid="Seven Segment-16-pin_g" pointList="-16,-116,56,-116" />
+
+<item itemtype="Connector" uid="Connector-134" startpinid="Resistor-42-lPin" endpinid="mega328-2-PORTD7" pointList="-48,-116,-64,-116,-64,32,-192,32,-192,-56,-176,-56" />
+
+<item itemtype="Connector" uid="Connector-135" startpinid="Switch-43-switch0pinN" endpinid="mega328-2-PORTD2" pointList="-248,4,-196,4,-196,-84,-180,-84,-180,-96,-176,-96" />
+
+<item itemtype="Connector" uid="Connector-136" startpinid="Switch-43-pinP0" endpinid="Ground-44-Gnd" pointList="-280,4,-280,68,-260,68,-260,76" />
+
+<item itemtype="Connector" uid="Connector-129" startpinid="Rail-6-outnod" endpinid="Seven Segment-16-pin_commona" pointList="92,-16,92,-108,88,-108" />
+
+<item itemtype="Connector" uid="Connector-148" startpinid="Resistor-39-lPin" endpinid="mega328-2-PORTB3" pointList="-48,-140,-80,-140,-80,-88,-120,-88" />
+
+<item itemtype="Connector" uid="Connector-149" startpinid="mega328-2-PORTB4" endpinid="Resistor-40-lPin" pointList="-120,-80,-76,-80,-76,-132,-48,-132" />
+
+</circuit>
