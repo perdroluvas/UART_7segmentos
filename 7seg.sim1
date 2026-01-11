@@ -92,7 +92,7 @@
 
 <item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
 
-<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="main.hex" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
+<item itemtype="MCU" CircId="mega328-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-120" rotation="0" hflip="1" vflip="1" label="Atmega328" idLabPos="-5.33386,-17.8086" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="main_simplificado.hex" Auto_Load="true" saveEepr="true" Logic_Symbol="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="false" SerialMon="-1" />
 
 <item itemtype="SerialTerm" CircId="SerialTerm-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-224,-104" rotation="0" hflip="-1" vflip="1" label="Terminal Virtual" idLabPos="-14.5247,-32.4563" labelrot="0" valLabPos="-16,20" valLabRot="0" Baudrate="4800 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
 
@@ -112,11 +112,11 @@
 
 <item itemtype="Resistor" CircId="Resistor-42" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-32,-116" rotation="0" hflip="1" vflip="1" label="Resistor-42" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="220 Ω" />
 
-<item itemtype="Switch" CircId="Switch-43" mainComp="false" Show_id="false" Show_Val="false" Pos="-264,4" rotation="0" hflip="1" vflip="1" label="Switch-43" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" DT="false" Poles="1" />
-
 <item itemtype="Ground" CircId="Ground-44" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,92" rotation="0" hflip="1" vflip="1" label="Ground-44" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
 <item itemtype="Rail" CircId="Rail-6" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="92,0" rotation="-90" hflip="1" vflip="1" label="Rail-6" idLabPos="-5,-10" labelrot="-90" valLabPos="-16.085,5.03883" valLabRot="-90" Voltage="5 V" />
+
+<item itemtype="Push" CircId="Push-47" mainComp="false" Show_id="false" Show_Val="false" Pos="-232,4" rotation="0" hflip="1" vflip="1" label="Push-47" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
 
 <item itemtype="Connector" uid="Connector-33" startpinid="SerialTerm-8-pin0" endpinid="mega328-2-PORTD0" pointList="-200,-112,-176,-112" />
 
@@ -144,16 +144,16 @@
 
 <item itemtype="Connector" uid="Connector-124" startpinid="Resistor-42-rPin" endpinid="Seven Segment-16-pin_g" pointList="-16,-116,56,-116" />
 
-<item itemtype="Connector" uid="Connector-134" startpinid="Resistor-42-lPin" endpinid="mega328-2-PORTD7" pointList="-48,-116,-64,-116,-64,32,-192,32,-192,-56,-176,-56" />
-
-<item itemtype="Connector" uid="Connector-135" startpinid="Switch-43-switch0pinN" endpinid="mega328-2-PORTD2" pointList="-248,4,-196,4,-196,-84,-180,-84,-180,-96,-176,-96" />
-
-<item itemtype="Connector" uid="Connector-136" startpinid="Switch-43-pinP0" endpinid="Ground-44-Gnd" pointList="-280,4,-280,68,-260,68,-260,76" />
-
 <item itemtype="Connector" uid="Connector-129" startpinid="Rail-6-outnod" endpinid="Seven Segment-16-pin_commona" pointList="92,-16,92,-108,88,-108" />
 
 <item itemtype="Connector" uid="Connector-148" startpinid="Resistor-39-lPin" endpinid="mega328-2-PORTB3" pointList="-48,-140,-80,-140,-80,-88,-120,-88" />
 
 <item itemtype="Connector" uid="Connector-149" startpinid="mega328-2-PORTB4" endpinid="Resistor-40-lPin" pointList="-120,-80,-76,-80,-76,-132,-48,-132" />
+
+<item itemtype="Connector" uid="Connector-154" startpinid="Resistor-42-lPin" endpinid="mega328-2-PORTB6" pointList="-48,-116,-60,-116,-60,-64,-120,-64" />
+
+<item itemtype="Connector" uid="Connector-155" startpinid="Ground-44-Gnd" endpinid="Push-47-pinP0" pointList="-260,76,-260,4,-248,4" />
+
+<item itemtype="Connector" uid="Connector-156" startpinid="Push-47-switch0pinN" endpinid="mega328-2-PORTD2" pointList="-216,4,-184,4,-184,-96,-176,-96" />
 
 </circuit>

@@ -1,186 +1,330 @@
 ; ==============================================================================
 ; PROJETO: Receptor Serial com Display 7 Segmentos
+; Microcontrolador: ATmega328P
 ; Display conectado em PB0-PB6 (segmentos a-g)
-; Lógica invertida: 0=ACENDE, 1=APAGA
+; Lógica invertida: 0=ACENDE, 1=APAGA (anodo comum)
+; Botão em PD2: envia nome via UART
+; ==============================================================================
+;
+; ==================== REFERÊNCIA DE INSTRUÇÕES ====================
+;
+; --- TRANSFERÊNCIA DE DADOS ---
+; LDI  Rd, K      : Load Immediate - Carrega valor imediato K no registrador Rd
+; LDS  Rd, addr   : Load Direct from SRAM - Carrega byte do endereço addr em Rd
+; STS  addr, Rr   : Store Direct to SRAM - Armazena Rr no endereço addr
+; IN   Rd, A      : In Port - Lê do registrador I/O A para Rd
+; OUT  A, Rr      : Out Port - Escreve Rr no registrador I/O A
+; MOV  Rd, Rr     : Move - Copia Rr para Rd
+; LPM  Rd, Z      : Load Program Memory - Lê byte da Flash apontado por Z
+; LPM  Rd, Z+     : Load Program Memory (pós-incremento) - Lê e incrementa Z
+;
+; --- PILHA (STACK) ---
+; PUSH Rr         : Empilha Rr (decrementa SP, escreve na RAM)
+; POP  Rd         : Desempilha para Rd (lê da RAM, incrementa SP)
+;
+; --- ARITMÉTICAS ---
+; ADD  Rd, Rr     : Add - Soma Rd = Rd + Rr
+; ADC  Rd, Rr     : Add with Carry - Soma com carry: Rd = Rd + Rr + C
+; SUBI Rd, K      : Subtract Immediate - Subtrai: Rd = Rd - K
+; CLR  Rd         : Clear Register - Zera Rd (equivale a EOR Rd, Rd)
+;
+; --- LÓGICAS ---
+; AND  Rd, Rr     : AND lógico bit a bit
+; OR   Rd, Rr     : OR lógico bit a bit
+; EOR  Rd, Rr     : XOR lógico bit a bit
+;
+; --- COMPARAÇÃO ---
+; CPI  Rd, K      : Compare with Immediate - Compara Rd com K (afeta flags)
+; CP   Rd, Rr     : Compare - Compara Rd com Rr (afeta flags)
+;
+; --- DESVIOS (BRANCH) ---
+; RJMP label      : Relative Jump - Salta para label (incondicional)
+; RCALL label     : Relative Call - Chama sub-rotina em label
+; RET             : Return - Retorna de sub-rotina
+; RETI            : Return from Interrupt - Retorna de interrupção
+; BREQ label      : Branch if Equal - Salta se Z=1 (resultado igual)
+; BRNE label      : Branch if Not Equal - Salta se Z=0 (resultado diferente)
+; BRLO label      : Branch if Lower - Salta se C=1 (unsigned menor)
+; BRSH label      : Branch if Same or Higher - Salta se C=0
+;
+; --- MANIPULAÇÃO DE BITS ---
+; SBI  A, b       : Set Bit in I/O - Seta bit b no registrador I/O A
+; CBI  A, b       : Clear Bit in I/O - Limpa bit b no registrador I/O A
+; SBRS Rr, b      : Skip if Bit in Register Set - Pula próxima instrução se bit b=1
+; SBRC Rr, b      : Skip if Bit in Register Clear - Pula próxima instrução se bit b=0
+;
+; --- CONTROLE ---
+; SEI             : Set Enable Interrupts - Habilita interrupções globais (I=1)
+; CLI             : Clear Interrupts - Desabilita interrupções globais (I=0)
+; NOP             : No Operation - Não faz nada (1 ciclo)
+;
+; EICRA - External Interrupt Control Register A
+; EIMSK - External Interrupt Mask Register
+; UCSR0A - USART Control and Status Register 0 A
+; UCSR0B - USART Control and Status Register 0 B
+; UCSR0C - USART Control and Status Register 0 C
+; UBRR0H - USART Baud Rate Register High
+; UBRR0L - USART Baud Rate Register Low
+; UDR0 - USART Data Register 0
+;
+; DDRB - Data Direction Register B
+; PORTB - Port B Output Register
+; DDRD - Data Direction Register D
+; PORTD - Port D Output Register
+;
+; ISC01 - Interrupt Sense Control 0 Bit 1
+; INT0 - External Interrupt Request 0
+; UDRE0 - USART Data Register Empty 0
+; RXEN0 - USART Receive Enable 0
+; TXEN0 - USART Transmit Enable 0
+; RXCIE0 - USART Receive Complete Interrupt Enable 0
+; UCSZ01 - USART Character Size 0 Bit 1
+; UCSZ00 - USART Character Size 0 Bit 0
+;
+; ==================== REGISTRADORES ESPECIAIS ====================
+;
+; R0-R15          : Registradores de uso geral (limitados para LDI)
+; R16-R31         : Registradores de uso geral (completos)
+; R26:R27 (X)     : Ponteiro X (XL:XH)
+; R28:R29 (Y)     : Ponteiro Y (YL:YH)
+; R30:R31 (Z)     : Ponteiro Z (ZL:ZH) - usado para LPM
+; SREG            : Status Register (flags: I T H S V N Z C)
+; SP (SPH:SPL)    : Stack Pointer (ponteiro da pilha)
+;
 ; ==============================================================================
 
-	.include "m328Pdef.inc"
+.include "m328Pdef.inc"
 
-	;    Baud Rate 4800
-	.equ VALOR_UBRR = 207
+.equ VALOR_UBRR = 207                   ; Baud Rate 4800 bps @ 16MHz: UBRR = (16MHz / 16×4800) - 1 = 207
 
-	.dseg
-	.org SRAM_START
+.cseg                                   ; Início da seção de código (Flash)
+.org 0x0000                             ; Endereço 0x0000 = vetor de reset
+	RJMP INICIO                         ; Salta para inicialização no reset
+.org INT0addr                           ; Endereço do vetor INT0 (interrupção externa 0)
+	RJMP ISR_BOTAO                      ; Salta para tratador do botão
+.org URXCaddr                           ; Endereço do vetor USART RX Complete
+	RJMP ISR_UART_RX                    ; Salta para tratador de recepção UART
 
-	.cseg
-	.org 0x0000
-	RJMP CONFIG_INICIAL
-	.org INT0addr
-	RJMP TRATA_BOTAO
-	.org URXCaddr
-	RJMP TRATA_RECEPCAO
-
-	; --- TABELA CORRIGIDA (LÓGICA INVERTIDA) ---
-	; O display opera em lógica negativa: 0=ACENDE, 1=APAGA
-	; IMPORTANTE: Dois bytes por linha para evitar padding de alinhamento!
-
-; Lookup table: índice 0-15 = dígitos 0-F, índice 16 = traço
-TABELA_HEX:
-	.DB 0x40, 0x79  ; 0, 1
-	.DB 0x24, 0x30  ; 2, 3
-	.DB 0x19, 0x12  ; 4, 5
-	.DB 0x02, 0x78  ; 6, 7
-	.DB 0x00, 0x10  ; 8, 9
-	.DB 0x08, 0x03  ; A, b
-	.DB 0x46, 0x21  ; C, d
-	.DB 0x06, 0x0E  ; E, F
-	.DB 0x3F, 0x00  ; traço, padding
-
-; String enviada ao pressionar botão (CR+LF no final)
+; ==================== TABELA 7 SEGMENTOS ====================
+; Índice 0-15 = dígitos 0-F, índice 16 = traço (caractere inválido)
+; Lógica invertida: 0=ACENDE, 1=APAGA (anodo comum)
+TABELA:
+	.DB 0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78  ; 0-7
+	.DB 0x00, 0x10, 0x08, 0x03, 0x46, 0x21, 0x06, 0x0E  ; 8-F
+	.DB 0x3F, 0x00                                       ; traço (idx 16), padding
+	; Bits:
+	; 0x40 = 00100000
+	; 0x79 = 01111001
+	; 0x24 = 00100100
+	; 0x30 = 00110000
+	; 0x19 = 00011001
+	; 0x12 = 00010010
+	; 0x02 = 00000010
+	; 0x78 = 01111000
+	; 0x00 = 00000000
+	; 0x10 = 00010000
+	; 0x08 = 00001000
+	; 0x03 = 00000011
+	; 0x46 = 01000110
+	; 0x21 = 00100001
+	; 0x06 = 00000110
+	; 0x0E = 00001110
+	; 0x3F = 00111111
+	; 0x00 = 00000000
 MSG_NOME:
-	.DB "Aluno: Pedro Lucas Batista dos Santos Araujo", 13, 10, 0, 0
+	.DB "Aluno: Pedro Lucas Batista dos Santos Araujo", 13, 10, 0, 0  ; String + CR + LF + terminador
 
 ; ==================== INICIALIZAÇÃO ====================
-CONFIG_INICIAL:
-	; Configura Stack Pointer para o topo da RAM
-	LDI R16, LOW(RAMEND)
-	OUT SPL, R16
-	LDI R16, HIGH(RAMEND)
-	OUT SPH, R16
+INICIO:
+	LDI R16, LOW(RAMEND)                ; R16 = byte baixo do topo da RAM (0xFF)
+	OUT SPL, R16                        ; SPL = 0xFF (Stack Pointer Low)
+	LDI R16, HIGH(RAMEND)               ; R16 = byte alto do topo da RAM (0x08)
+	OUT SPH, R16                        ; SPH = 0x08 → SP = 0x08FF (topo da RAM)
+	; ------------------------------------------------------
+    ; Configuração do Port B (PB0-PB6)
+    ; Endereço: 0x24
+    ; Implementação atual:
+    ; - PB0-PB6 como saída (display)
+    ; - Valor escrito: 0b01111111 (0x7F)
+	LDI R16, 0x7F                       ; R16 = 0b01111111 (bits 0-6 = 1)
+	OUT DDRB, R16                       ; DDRB = 0x7F → PB0-PB6 como saída (display)
+	OUT PORTB, R16                      ; PORTB = 0x7F → display apagado (lógica invertida)
+	SBI DDRD, 1                         ; DDRD bit 1 = 1 → PD1 como saída (TX UART)
+	SBI PORTD, 2                        ; PORTD bit 2 = 1 → ativa pull-up em PD2 (botão)
+	; ------------------------------------------------------
+    ; Configuração EICRA (External Interrupt Control Register A)
+    ; Endereço: 0x69 (só pode ser acessado com STS)
+	; OUT só vai até 0x3F
+    ; Implementação atual:
+    ; - Apenas INT0 é utilizado nesta implementação.
+    ; - INT0 sensível à borda de descida (ISC01=1, ISC00=0).
+    ; - ISC11/ISC10 não são utilizados (ficam 0).
+    ; - Valor escrito: 0b00000010 (0x02)
+	LDI R16, (1<<ISC01)                 ; R16 = 0b00000010 → INT0 na borda de descida
+	STS EICRA, R16                      ; EICRA = 0x02
 
-	; Configura direção dos pinos
-	LDI R16, 0x7F
-	OUT DDRB, R16          ; PB0-PB6 como saída (segmentos a-g)
-	SBI DDRD, 1            ; PD1 como saída (TX da UART)
-	CBI DDRD, 2            ; PD2 como entrada (botão)
-	SBI PORTD, 2           ; Ativa pull-up no botão
+    ; ------------------------------------------------------
+    ; Configuração EIMSK (External Interrupt Mask Register)
+    ; Endereço: 0x37 (só pode ser acessado com OUT)
+    ; OUT só vai até 0x3F
+    ; Implementação atual:
+    ; - Só INT0 é habilitada (bit 0).
+    ; - Valor escrito: 0b00000001 (0x01)
+	LDI R16, (1<<INT0)                  ; R16 = 0b00000001 → habilita INT0
+	OUT EIMSK, R16                      ; EIMSK = 0x01 → interrupção INT0 habilitada
 
-	; Configura INT0: dispara na borda de descida
-	LDI R16, (1 << ISC01)
-	STS EICRA, R16
-	LDI R16, (1 << INT0)
-	OUT EIMSK, R16         ; Habilita INT0
+	; ------------------------------------------------------
+    ; Configuração UART (USART)
+    ; Endereço: 0x2C
+    ; Implementação atual:
+    ; - Baud Rate: 4800 bps
+    ; - Formato: 8N1 (8 bits, sem paridade, 1 stop)
+    ; - Valor escrito: 0x00 (byte alto de 207), 0xCF (byte baixo de 207)
+    ; - RX + TX + interrupção RX
+    ; - 8 bits de dados
+	LDI R16, HIGH(VALOR_UBRR)           ; R16 = byte alto de 207 = 0x00
+	STS UBRR0H, R16                     ; UBRR0H = 0x00
+	LDI R16, LOW(VALOR_UBRR)            ; R16 = byte baixo de 207 = 0xCF
+	STS UBRR0L, R16                     ; UBRR0L = 0xCF → baud rate = 4800 bps
+	; ------------------------------------------------------
+    ; Configuração UCSR0B (USART Control and Status Register 0 B)
+    ; Endereço: 0x2A
+    ; Implementação atual:
+    ; - RX + TX + interrupção RX
+    ; - Valor escrito: 0b10011000 (0x98)
+	LDI R16, (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0)  ; R16 = 0b10011000 → RX + TX + interrupção RX
+	STS UCSR0B, R16                     ; UCSR0B = habilita recepção, transmissão e interrupção RX
+	LDI R16, (1<<UCSZ01)|(1<<UCSZ00)    ; R16 = 0b00000110 → 8 bits de dados
+	STS UCSR0C, R16                     ; UCSR0C = formato 8N1 (8 bits, sem paridade, 1 stop)
 
-	; Configura UART: 4800 bps, 8N1
-	LDI R16, high(VALOR_UBRR)
-	STS UBRR0H, R16
-	LDI R16, low(VALOR_UBRR)
-	STS UBRR0L, R16
-	LDI R16, (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0)  ; RX, TX e interrupção RX
-	STS UCSR0B, R16
-	LDI R16, (1<<UCSZ01)|(1<<UCSZ00)            ; 8 bits de dados
-	STS UCSR0C, R16
+	SEI                                 ; Habilita interrupções globais (I=1 no SREG)
 
-	SEI                    ; Habilita interrupções globais
-
-; Loop principal - apenas aguarda interrupções
-MAIN_LOOP:
-	RJMP MAIN_LOOP
+LOOP:
+	RJMP LOOP                           ; Loop infinito - aguarda interrupções
 
 ; ==================== ISR: RECEPÇÃO UART ====================
-TRATA_RECEPCAO:
-	; Salva contexto (registradores usados + SREG)
-	PUSH R16
-	PUSH R17
-	PUSH R30
-	PUSH R31
-	IN   R16, SREG
-	PUSH R16
+ISR_UART_RX:
+	; ------------------------------------------------------
+    ; Salva contexto (registradores usados + SREG)
+    ; Implementação atual:
+    ; - R16: byte recebido da UART
+    ; - R17: flags (salva SREG)
+    ; - ZL: byte baixo do endereço da tabela
+    ; - ZH: byte alto do endereço da tabela
+	PUSH R16                            ; Salva R16 na pilha
+	PUSH R17                            ; Salva R17 na pilha
+	IN R17, SREG                        ; R17 = SREG (salva flags)
+	PUSH R17                            ; Salva SREG na pilha
+	PUSH ZL                             ; Salva ZL (R30) na pilha
+	PUSH ZH                             ; Salva ZH (R31) na pilha
 
-	LDS R17, UDR0          ; Lê byte recebido
+	LDS R16, UDR0                       ; R16 = byte recebido da UART
 
-	; Ignora CR (13) e LF (10) - evita "apagar" display no Enter
-	CPI  R17, 13
-	BREQ SAI_RX
-	CPI  R17, 10
-	BREQ SAI_RX
+	CPI R16, 13                         ; Compara R16 com 13 (CR)
+	BREQ FIM_RX                         ; Se igual, salta para FIM_RX (ignora CR)
+	CPI R16, 10                         ; Compara R16 com 10 (LF)
+	BREQ FIM_RX                         ; Se igual, salta para FIM_RX (ignora LF)
 
-	; === Classificação do caractere recebido ===
-	CPI  R17, '0'
-	BRLO EH_INVALIDO       ; < '0' → inválido
-	CPI  R17, '9' + 1
-	BRLO EH_NUMERO         ; '0'-'9' → número
-	CPI  R17, 'A'
-	BRLO EH_INVALIDO       ; entre '9' e 'A' → inválido
-	CPI  R17, 'F' + 1
-	BRLO EH_LETRA_MAIUSCULA ; 'A'-'F' → hex maiúsculo
-	CPI  R17, 'a'
-	BRLO EH_INVALIDO       ; entre 'F' e 'a' → inválido
-	CPI  R17, 'f' + 1
-	BRLO EH_LETRA_MINUSCULA ; 'a'-'f' → hex minúsculo
-	RJMP EH_INVALIDO
+	RCALL CONVERTE_HEX                  ; Chama sub-rotina: converte ASCII → índice (0-16)
 
-EH_NUMERO:
-	SUBI R17, '0'          ; Converte ASCII '0'-'9' → 0-9
-	RJMP ATUALIZA
+	LDI ZH, HIGH(TABELA*2)              ; ZH = byte alto do endereço da tabela (×2 pois Flash é em palavras)
+	LDI ZL, LOW(TABELA*2)               ; ZL = byte baixo do endereço da tabela
+	ADD ZL, R16                         ; ZL = ZL + índice (desloca na tabela)
+	CLR R17                             ; R17 = 0 (para propagar carry)
+	ADC ZH, R17                         ; ZH = ZH + carry (se ZL estourou)
+	LPM R16, Z                          ; R16 = byte da Flash apontado por Z (padrão de segmentos)
 
-EH_LETRA_MAIUSCULA:
-	SUBI R17, 'A' - 10     ; Converte ASCII 'A'-'F' → 10-15
-	RJMP ATUALIZA
+	OUT PORTB, R16                      ; PORTB = padrão de segmentos → atualiza display
 
-EH_LETRA_MINUSCULA:
-	SUBI R17, 'a' - 10     ; Converte ASCII 'a'-'f' → 10-15
-	RJMP ATUALIZA
-
-EH_INVALIDO:
-	LDI R17, 16            ; Índice 16 = traço (caractere inválido)
-
-ATUALIZA:
-	; Carrega endereço da tabela (x2 pois Flash é em palavras)
-	LDI ZH, HIGH(TABELA_HEX * 2)
-	LDI ZL, LOW(TABELA_HEX * 2)
-	ADD ZL, R17            ; Z += índice do dígito
-	LDI R16, 0
-	ADC ZH, R16            ; Propaga carry se houver
-	LPM R16, Z             ; Lê padrão de segmentos da tabela
-
-	OUT PORTB, R16         ; Envia bits 0-6 para segmentos a-g
-
-SAI_RX:
-	; Restaura contexto e retorna da interrupção
-	POP R16
-	OUT SREG, R16
-	POP R31
-	POP R30
-	POP R17
-	POP R16
-	RETI
+FIM_RX:
+	POP ZH                              ; Restaura ZH da pilha
+	POP ZL                              ; Restaura ZL da pilha
+	POP R17                             ; Restaura SREG da pilha
+	OUT SREG, R17                       ; SREG = R17 (restaura flags)
+	POP R17                             ; Restaura R17 da pilha
+	POP R16                             ; Restaura R16 da pilha
+	RETI                                ; Retorna da interrupção (restaura PC e habilita I)
 
 ; ==================== ISR: BOTÃO (INT0) ====================
-TRATA_BOTAO:
-	; Salva contexto
-	PUSH R16
-	PUSH R17
-	PUSH R30
-	PUSH R31
-	IN   R16, SREG
-	PUSH R16
+ISR_BOTAO:
+	PUSH R16                            ; Salva R16 na pilha
+	PUSH R17                            ; Salva R17 na pilha
+	IN R17, SREG                        ; R17 = SREG (salva flags)
+	PUSH R17                            ; Salva SREG na pilha
+	PUSH ZL                             ; Salva ZL na pilha
+	PUSH ZH                             ; Salva ZH na pilha
 
-	; Carrega endereço da string
-	LDI  ZH, HIGH(MSG_NOME * 2)
-	LDI  ZL, LOW(MSG_NOME * 2)
+	LDI ZH, HIGH(MSG_NOME*2)            ; ZH = byte alto do endereço da string
+	LDI ZL, LOW(MSG_NOME*2)             ; ZL = byte baixo do endereço da string
 
-ENVIA_MSG:
-	LPM   R17, Z+          ; Lê próximo char e incrementa ponteiro
-	CPI   R17, 0           ; Chegou no terminador?
-	BREQ  FIM_BTN          ; Sim → sai
-	RCALL TX_BYTE          ; Não → envia o byte
-	RJMP  ENVIA_MSG        ; Repete
+ENVIA_LOOP:
+	LPM R16, Z+                         ; R16 = próximo caractere, Z++ (pós-incremento)
+	CPI R16, 0                          ; Compara R16 com 0 (terminador)
+	BREQ FIM_BTN                        ; Se igual, salta para FIM_BTN (fim da string)
+	RCALL ENVIA_BYTE                    ; Chama sub-rotina: envia R16 pela UART
+	RJMP ENVIA_LOOP                     ; Repete para próximo caractere
 
 FIM_BTN:
-	; Restaura contexto e retorna
-	POP R16
-	OUT SREG, R16
-	POP R31
-	POP R30
-	POP R17
-	POP R16
-	RETI
+	POP ZH                              ; Restaura ZH da pilha
+	POP ZL                              ; Restaura ZL da pilha
+	POP R17                             ; Restaura SREG da pilha
+	OUT SREG, R17                       ; SREG = R17 (restaura flags)
+	POP R17                             ; Restaura R17 da pilha
+	POP R16                             ; Restaura R16 da pilha
+	RETI                                ; Retorna da interrupção
 
-; ==================== SUB-ROTINA: ENVIA BYTE UART ====================
-TX_BYTE:
-	LDS  R16, UCSR0A       ; Lê status da UART
-	SBRS R16, UDRE0        ; Buffer TX vazio?
-	RJMP TX_BYTE           ; Não → aguarda
-	STS  UDR0, R17         ; Sim → envia byte
-	RET
+; ==================== SUB-ROTINA: CONVERTE ASCII → ÍNDICE ====================
+; Entrada: R16 = caractere ASCII ('0'-'9', 'A'-'F', 'a'-'f')
+; Saída:   R16 = índice (0-15) ou 16 se inválido
+CONVERTE_HEX:
+	CPI R16, '0'                        ; Compara R16 com '0' (48)
+	BRLO INVALIDO                       ; Se menor, salta para INVALIDO
+	CPI R16, '9'+1                      ; Compara R16 com ':' (58)
+	BRLO EH_DIGITO                      ; Se menor, é dígito '0'-'9'
+	CPI R16, 'A'                        ; Compara R16 com 'A' (65)
+	BRLO INVALIDO                       ; Se menor, salta para INVALIDO
+	CPI R16, 'F'+1                      ; Compara R16 com 'G' (71)
+	BRLO EH_MAIUSCULA                   ; Se menor, é letra 'A'-'F'
+	CPI R16, 'a'                        ; Compara R16 com 'a' (97)
+	BRLO INVALIDO                       ; Se menor, salta para INVALIDO
+	CPI R16, 'f'+1                      ; Compara R16 com 'g' (103)
+	BRLO EH_MINUSCULA                   ; Se menor, é letra 'a'-'f'
+	RJMP INVALIDO                       ; Caso contrário, inválido
+
+EH_DIGITO:
+	SUBI R16, '0'                       ; R16 = R16 - 48 → converte '0'-'9' para 0-9
+	RET                                 ; Retorna da sub-rotina
+
+EH_MAIUSCULA:
+	SUBI R16, 'A'-10                    ; R16 = R16 - 55 → converte 'A'-'F' para 10-15
+	RET                                 ; Retorna da sub-rotina
+
+EH_MINUSCULA:
+	SUBI R16, 'a'-10                    ; R16 = R16 - 87 → converte 'a'-'f' para 10-15
+	RET                                 ; Retorna da sub-rotina
+
+INVALIDO:
+	LDI R16, 16                         ; R16 = 16 → índice do traço na tabela
+	RET                                 ; Retorna da sub-rotina
+
+; ==================== SUB-ROTINA: ENVIA BYTE PELA UART ====================
+; Entrada: R16 = byte a enviar
+ENVIA_BYTE:
+	PUSH R17                            ; Salva R17 na pilha (será usado)
+	; ------------------------------------------------------
+    ; Aguarda buffer TX vazio
+    ; Implementação atual:
+    ; - R17: registrador de status da UART
+    ; - UDRE0: bit 5 do registrador de status da UART (buffer TX vazio)
+ESPERA_TX:
+	; ------------------------------------------------------
+    ; Verifica se buffer TX vazio
+    ; Implementação atual:
+    ; - R17: registrador de status da UART
+    ; - UDRE0: bit 5 do registrador de status da UART (buffer TX vazio)
+	LDS R17, UCSR0A                     ; R17 = registrador de status da UART
+	SBRS R17, UDRE0                     ; Pula próxima instrução se UDRE0=1 (buffer vazio)
+	RJMP ESPERA_TX                      ; Se UDRE0=0, aguarda (buffer cheio)
+	STS UDR0, R16                       ; UDR0 = R16 → envia byte pela UART
+	POP R17                             ; Restaura R17 da pilha
+	RET                                 ; Retorna da sub-rotina
